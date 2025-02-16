@@ -98,12 +98,12 @@ const JsonFormatter: React.FC = () => {
 
   const toggleCollapse = (index: number) => {
     setFormattedLines(prevLines => {
-      const newLines = [...prevLines];
-      const line = newLines[index];
-      if (line.isCollapsible && line.endLine !== -1) {
-        line.isCollapsed = !line.isCollapsed;
-      }
-      return newLines;
+      return prevLines.map((line, i) => {
+        if (i === index && line.isCollapsible && line.endLine !== -1) {
+          return { ...line, isCollapsed: !line.isCollapsed };
+        }
+        return line;
+      });
     });
   };
 
