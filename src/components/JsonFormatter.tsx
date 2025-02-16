@@ -130,7 +130,19 @@ const JsonFormatter: React.FC = () => {
       <div
         key={index}
         style={style}
-        onClick={() => line.isCollapsible && toggleCollapse(index)}
+        onClick={() => {
+          console.log('Clicked line info:', {
+            text: line.text,
+            level: line.level,
+            isCollapsible: line.isCollapsible,
+            isCollapsed: line.isCollapsed,
+            startLine: line.startLine,
+            endLine: line.endLine
+          });
+          if (line.isCollapsible) {
+            toggleCollapse(index);
+          }
+        }}
       >
         {collapseIcon}{line.text}
       </div>
